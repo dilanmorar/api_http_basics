@@ -16,10 +16,10 @@ print(dict_response['status'])
 print(dict_response['result'])
 
 # 2 - prints out the longitude, latitude, nuts and admin_ward of a postcode
-print('longitude: ' + dict_response['result']['longitude'])
-print('latitude: ' + dict_response['result']['latitude'])
-print('nuts: ' + dict_response['result']['nuts'])
-print('admin_ward' + dict_response['result']['admin_ward'])
+print(f"longitude: {dict_response['result']['longitude']}")
+print(f"latitude: dict_response['result']['latitude']")
+print(f"nuts: dict_response['result']['nuts']")
+print(f"admin_ward: dict_response['result']['admin_ward']")
 
 # 3 - function that returns the latitude of a postcode
 def postcode_latitude():
@@ -36,3 +36,25 @@ def postcode_longitude():
     result = requests.get(path_url + user_postcode.strip())
     post_code_dict = result.json()
     return post_code_dict['result']['longitude']
+
+# 5 - search a postcode and export data to a TXT file:
+
+user_postcode = input('What is the postcode you would like to search for?')
+path_url = 'http://api.postcodes.io/postcodes/'
+result = requests.get(path_url + user_postcode.strip())
+post_code_dict = result.json()
+# ask for file creation name
+ask_file = input('Please name the file you would like to insert your postcode data into')
+file_name = ask_file + '.txt'
+#create the file
+try:
+    with open(file_name, 'w+') as file_created:
+            file_created.write(f"Postcode: {post_code_dict['result']['postcode']}."
+                            f" Longitude: {post_code_dict['result']['longitude']}."
+                            f" Latitude: {post_code_dict['result']['latitude']}."
+                            f" Nuts: {post_code_dict['result']['nuts']}."
+                            f" Admin Ward: {post_code_dict['result']['admin_ward']}.")
+except TypeError as error:
+    print('Invalid input')
+finally:
+    print('Completed')
