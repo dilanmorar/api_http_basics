@@ -14,3 +14,18 @@ We're going to be looking into the world of API's
 - Examples of API services and growth via API
 - API in finance, work, telecommunication, data, etc ...
 
+## Task
+1 - play around with api and getting data
+2 - from a postcode retrieve the following data:
+    - longitude
+    - latitude
+    - nuts
+    - admin_ward
+3 - build a function that returns the latitude of a postcode
+4 - build a function that returns the longitude of a postcode
+5 - allows me to search a postcode and get the following data exported to atxt file
+    - postcode
+    - latitude
+    - longitude
+    - nuts
+    - admin_ward
