@@ -38,15 +38,13 @@ def postcode_longitude():
     return post_code_dict['result']['longitude']
 
 # 5 - search a postcode and export data to a TXT file:
-
-user_postcode = input('What is the postcode you would like to search for?')
+user_postcode = input('Postcode: ')
 path_url = 'http://api.postcodes.io/postcodes/'
 result = requests.get(path_url + user_postcode.strip())
 post_code_dict = result.json()
 # ask for file creation name
-ask_file = input('Please name the file you would like to insert your postcode data into')
-file_name = ask_file + '.txt'
-#create the file
+user_file = input('File name: ')
+file_name = user_file + '.txt'
 try:
     with open(file_name, 'w+') as file_created:
             file_created.write(f"Postcode: {post_code_dict['result']['postcode']}."
