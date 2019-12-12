@@ -22,3 +22,10 @@ print('latitude: ' + dict_response['result']['latitude'])
 print('nuts: ' + dict_response['result']['nuts'])
 print('admin_ward' + dict_response['result']['admin_ward'])
 
+# 3 - build a function that returns a lat of a postcode
+def postcode_lat():
+    user_postcode = input('Input: ')
+    path_url = 'http://api.postcodes.io/postcodes/'
+    result = requests.get(path_url + user_postcode.strip())
+    post_code_dict = result.json()
+    return post_code_dict['result']['latitude']
